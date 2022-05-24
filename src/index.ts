@@ -13,6 +13,8 @@ App.use(cors())
   .use(json())
   .use(router)
 
+export { App }
+
 App.listen(PORT, () => {
   console.log(`Running at http://127.0.0.1:${PORT}/`)
 })
