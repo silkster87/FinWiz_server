@@ -15,6 +15,6 @@ App.use(cors())
 
 export { App }
 
-App.listen(PORT, () => {
+export const server = App.listen(PORT, () => {
   console.log(`Running at http://127.0.0.1:${PORT}/`)
 })
