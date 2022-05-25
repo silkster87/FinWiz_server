@@ -9,7 +9,7 @@ export const getUserStocks = async (req: Request, res: Response) => {
 
   try {
     const data = await getRequest(url)
-
+    res.status(200)
     res.send(data.data)
   } catch (err) {
     console.error(err)

@@ -5,7 +5,7 @@
   "main": "src/index.ts",
   "scripts": {
     "build": "tsc --project ./",
-    "test": "jest",
+    "test": "jest --maxWorkers=1",
     "start": "ts-node src/index.ts"
   },
   "repository": {
