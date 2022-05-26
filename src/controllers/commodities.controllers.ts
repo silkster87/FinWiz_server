@@ -2,17 +2,21 @@ import { Request, Response } from 'express'
 import { addCommodity, liveCommodities, updateCommodity } from '../models/commodities.models'
 
 export const getCommodities = async (req: Request, res: Response) => {
-  const resData = await liveCommodities()
-
-  res.status(200)
-  res.send(resData)
+  try {
+    const resData = await liveCommodities()
+    res.status(200)
+    res.send(resData)
+  } catch (err) {
+    console.error('Error in getCommodities', err)
+    res.sendStatus(500)
+  }
 }
 
 export const addUserCommodity = async (req: Request, res: Response) => {
   try {
-    await addCommodity(req)
+    const result = await addCommodity(req)
     res.status(201)
-    res.send('created')
+    res.send(result)
   } catch (err) {
     console.error('Error in addUserCrypto: ', err)
     res.sendStatus(500)
@@ -21,9 +25,9 @@ export const addUserCommodity = async (req: Request, res: Response) => {
 
 export const updateUserCommodity = async (req: Request, res: Response) => {
   try {
-    await updateCommodity(req)
+    const result = await updateCommodity(req)
     res.status(201)
-    res.send('user commodity updated')
+    res.send(result)
   } catch (err) {
     console.error('Error in updateUserCommodity: ', err)
     res.sendStatus(500)
