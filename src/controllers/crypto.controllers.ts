@@ -16,7 +16,7 @@ export const getUserCrypto = async (req: Request, res: Response) => {
       url,
       cryptoHeaders(process.env.COINCAP_KEY || '')
     )
-
+    res.status(200)
     res.send(data.data)
   } catch (err) {
     console.error(err)
@@ -26,9 +26,9 @@ export const getUserCrypto = async (req: Request, res: Response) => {
 
 export const addUserCrypto = async (req: Request, res: Response) => {
   try {
-    await addCrypto(req)
+    const result = await addCrypto(req)
     res.status(201)
-    res.send('created')
+    res.send(result)
   } catch (err) {
     console.error('Error in addUserCrypto: ', err)
     res.sendStatus(500)
@@ -37,9 +37,9 @@ export const addUserCrypto = async (req: Request, res: Response) => {
 
 export const updateUserCrypto = async (req: Request, res: Response) => {
   try {
-    await updateCrypto(req)
+    const result = await updateCrypto(req)
     res.status(201)
-    res.send('user crypto updated')
+    res.send(result)
   } catch (err) {
     console.error('Error in updateUserCrypto: ', err)
     res.sendStatus(500)
@@ -79,7 +79,7 @@ export const getCryptoList = async (req: Request, res: Response) => {
 
     investmentsCache.set('crypto', resData)
 
-    res.status(201)
+    res.status(200)
     res.send(resData)
   } catch (err) {
     console.error(err)

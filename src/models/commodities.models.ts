@@ -67,8 +67,8 @@ export const addCommodity = async (req: Request) => {
     await updateCommoditiesSummary(sub)
     const userInvestmentValue = await investmentValues(sub, date, totalValueOfCommodity)
 
-    await Prisma.user.update({
-      where: { sub: sub },
+    return await Prisma.user.update({
+      where: { sub },
       data: { totalInvestmentValue: userInvestmentValue.value }
     })
   } catch (err) {
