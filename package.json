@@ -4,6 +4,8 @@
   "description": "The server for finwiz",
   "main": "src/index.ts",
   "scripts": {
+    "prepare": "npx prisma generate",
+    "postinstall": "tsc",
     "build": "tsc --project ./",
     "test": "jest --maxWorkers=1",
     "start": "ts-node src/index.ts"
