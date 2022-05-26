@@ -28,7 +28,7 @@ export const addCrypto = async (req: Request) => {
 
     const userInvestmentValue = await investmentValues(sub, date, totalValueOfCrypto)
 
-    await Prisma.user.update({
+    return await Prisma.user.update({
       where: { sub },
       data: { totalInvestmentValue: userInvestmentValue.value }
     })

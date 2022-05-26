@@ -9,7 +9,7 @@ export const getUserStocks = async (req: Request, res: Response) => {
 
   try {
     const data = await getRequest(url)
-
+    res.status(200)
     res.send(data.data)
   } catch (err) {
     console.error(err)
@@ -42,9 +42,9 @@ export const getStockList = async (req: Request, res: Response) => {
 
 export const addUserStock = async (req: Request, res: Response) => {
   try {
-    await addStock(req)
+    const result = await addStock(req)
     res.status(201)
-    res.send('userRecord')
+    res.json(result)
   } catch (err) {
     console.error('Error in addUserStock: ', err)
     res.sendStatus(500)
@@ -53,9 +53,9 @@ export const addUserStock = async (req: Request, res: Response) => {
 
 export const updateUserStocks = async (req: Request, res: Response) => {
   try {
-    await updateStock(req)
+    const result = await updateStock(req)
     res.status(200)
-    res.send('user stock updated')
+    res.json(result)
   } catch (err) {
     console.error('Error in updateUserStocks: ', err)
     res.sendStatus(500)
